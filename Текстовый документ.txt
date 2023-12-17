@@ -1,0 +1,41 @@
+import string
+
+def analyze_text(text):
+    # Определение и вывод общего количества символов в тексте
+    total_characters = len(text)
+    print(f"Общее количество символов: {total_characters}")
+
+    # Подсчет и вывод количества слов
+    words = text.split()
+    word_count = len(words)
+    print(f"Количество слов: {word_count}")
+
+    # Определение и вывод количества уникальных слов (без учета регистра)
+    unique_words = set(word.lower() for word in words)
+    unique_word_count = len(unique_words)
+    print(f"Количество уникальных слов: {unique_word_count}")
+
+    # Определение и вывод количества уникальных символов (без учета регистра и игнорируя знаки пунктуации)
+    text_without_punctuation = ''.join(char.lower() for char in text if char.isalnum() or char.isspace())
+    unique_characters = set(text_without_punctuation)
+    unique_character_count = len(unique_characters)
+    print(f"Количество уникальных символов: {unique_character_count}")
+
+    sentence_count = 0
+    for char in text:
+        if char in string.punctuation:
+            sentence_count += 1
+    print(f"Количество предложений: {sentence_count}")
+
+    # Распознавание чисел и вывод их количества
+    numbers = [word for word in words if word.isdigit()]
+    number_count = len(numbers)
+    print(f"Количество чисел: {number_count}")
+
+input_text = """
+Пример текста. Это - пример текста!
+Как видите, здесь есть несколько предложений.
+Мы хотим посчитать различные статистические параметры этого текста.
+Возможно, здесь есть числа, например, 42 и 3.14.
+"""
+analyze_text(input_text)
